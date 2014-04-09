@@ -6,8 +6,6 @@ When the user clicks "Start", we start periodically fetching the location using 
 
 If the user hits 'Stop', we abort the timer.
 
-Some interaction design challenges:
-
 Things to try:
 * Using previous audio demos, can you make a luggage minder which sets off an alarm when it strays too far?
 * The demo could be improved to record the actual route taken. Every time a new location is available, it can add it to an array, so that the total distance travelled can be calculated.
