@@ -1,8 +1,7 @@
-audio-feedback
-============
+audio-oscillator
+================
 
-This demo shows you how to use audio feedback based on how far the box is from the screen center. Imagine the user couldn't see the screen and had to position the box in the center.
-The beeping intensify when the box is moved closer to the screen center.
+This sample demonstrates controlling an oscillator based on the position of a user-draggable box. Imagine the user couldn't see the screen and had to position the box in the center. The beeping intensifies when the box is moved closer to the screen center.
 
 We use an ```oscillator``` to generate a sound.
 
