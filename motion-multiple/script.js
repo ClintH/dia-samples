@@ -46,15 +46,10 @@ function onDeviceMotion(e) {
     gamma: motion.rotationRate.gamma
   };
 
-  var motionData = {
+  socket.emit('say', {
     acceleration: acceleration,
     accelerationIncludingGravity: accelerationIncludingGravity,
     rotationRate: rotationRate
-  };
-
-  socket.emit('say', {
-    id: myId,
-    motion: motionData
   });
 }
 
@@ -73,8 +68,8 @@ function onJoin(e) {
 }
 
 function onSay(e) {
-  var id = e.id;
-  var motion = e.motion.accelerationIncludingGravity;
+  var id = e._clientId;
+  var motion = e.accelerationIncludingGravity;
   var client = clients[id];
 
   if (client) {
@@ -102,6 +97,8 @@ function onLeave(e) {
 function onHello(e) {
   myId = e.id;
   socket.emit('join', { room: roomName });
+  //Update myid information
+  $('#myid').html('id: '+ myId);
 }
 
 //Draw HTML for a new client
