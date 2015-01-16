@@ -8,8 +8,9 @@ You can change the voice via the dropdown.
 ```speechSynthesis()``` accepts messages and will say it out loud through your laptop speakers.
 
 Things to try:
-* Use multiple voices to provide different kind of feedback.
-* Use different voices to set the mood
+* Try changing the voice in code
+* Can you transform the user's input in an interesting way so the computer doesn't say exactly what is typed?
+* Can you link this up with the speech-input demo to have a conversation with your computer?
 
 Read more:
 * (Web apps that talk - Introduction to the Speech Synthesis API)[http://updates.html5rocks.com/2014/01/Web-apps-that-talk---Introduction-to-the-Speech-Synthesis-API]
