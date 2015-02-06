@@ -19,11 +19,12 @@
   <link rel='stylesheet' href='style.css'>
 </head>
 <body kattegat-livereload="true" >
-  <!-- Touch area -->
-  <section></section>
-  <!-- Log -->
-  <aside></aside>
+  <!-- Pointer events are listened to within the section -->
+  <section><div id="lastEvent"></div></section>
 
+  <!-- We use this element as a log of events -->
+  <aside>Touch or move your cursor inside the white box</aside>
+  
 	<!-- SCRIPT REFERENCING
 	     Here we pull in Javascript files for the page.
 	     It's a good idea to keep JS separate from HTML.

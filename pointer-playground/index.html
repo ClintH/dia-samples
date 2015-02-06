@@ -22,9 +22,11 @@
 </head>
 <body kattegat-livereload="true"  touch-action="none">
 
-  <!-- Represention the square -->
-  <section></section>
-  <aside></aside>
+  <!-- Pointer events are listened to within the section -->
+  <section><div id="lastEvent"></div></section>
+
+  <!-- We use this element as a log of events -->
+  <aside>Touch or move your cursor inside the white box</aside>
 
 	<!-- SCRIPT REFERENCING
 	     Here we pull in Javascript files for the page.

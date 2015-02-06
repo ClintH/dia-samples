@@ -37,3 +37,7 @@ aside {
 aside>div {
   border-bottom: 1px solid gray;
 }
+
+#lastEvent {
+  float: left;
+}

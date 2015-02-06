@@ -16,11 +16,12 @@ body {
   background: lightblue;
 }
 
-.targetBox {
-  position: absolute;
-  top: 7em;
+.box {
   height: 3em;
   width: 5em;
+  border-radius: 10px;
   display: block;
   background-color: silver;
+  position: absolute;
+  padding: 1em;
 }

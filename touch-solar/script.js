@@ -1,12 +1,7 @@
-/*
- *
- * Setup
- *
-*/
 var planet = null;
 
 $(document).ready(function() {
-  //Prevent normal iOS/Android touch gestures
+  // Prevent normal iOS/Android touch gestures
   $('body').on('touchmove', function(e) {
     e.preventDefault()
   });
@@ -14,7 +9,7 @@ $(document).ready(function() {
   // Initialise Hammer (important!)
   $('body').hammer({prevent_default:true});
 
-  //Enable extra debug on desktop browsers
+  // Enable extra debug on desktop browsers
   Hammer.plugins.showTouches();
   Hammer.plugins.fakeMultitouch();
 
@@ -49,7 +44,6 @@ function onTap(e) {
 /*
  * Create a new planet
 */
-
 function onPinch(e) {
   //Get the coordinates
   var size = 10;
@@ -66,11 +60,11 @@ function onPinch(e) {
       .css({
         'width': size,
         'height': size,
-        'margin-left': (-1 * (size/2)), //Center position
-        'margin-top': (-1 * (size/2))   //Center position
+        'margin-left': (-1 * (size/2)), // Center position
+        'margin-top': (-1 * (size/2))   // Center position
       });
   } else {
-    //Create the planet
+    // Create the planet
     planet = $('<figure></figure>')
       .css({
         'top': top,
@@ -87,11 +81,11 @@ function onRotate(e) {
   var rotation = e.gesture.rotation;
   var hue = rotation + 360;
 
-  //Make sure hue does not exceed 360 - the highest possible value
+  // Make sure hue does not exceed 360 - the highest possible value
   hue = Math.min(hue, 360);
 
   if (planet) {
-    //HSL values: http://hslpicker.com/
+    // HSL values: http://hslpicker.com/
     planet.css({
       'background-color': 'hsl('+hue+',100%,20%)'
     });

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html>
-<head>
+<html><head>
   <title>pointer-drag</title>
 
   <meta charset="UTF-8">
@@ -23,11 +22,11 @@
 <body kattegat-livereload="true"  touch-action="none">
 
   <!-- squared box -->
-  <div id="dragBox">Move me!</div>
+  <div class="box" id="dragBox">Move me!</div>
 
   <!-- something a square can hit -->
-  <div class="targetBox" style="left:5em">Hit me!</div>
-  <div class="targetBox" style="top: 15em;left: 15em">Hit me!</div>
+  <div class="targetBox box" style="top: 5em; left: 12em">Hit me!</div>
+  <div class="targetBox box" style="top: 15em;left: 12em">Hit me!</div>
 
   <!-- SCRIPT REFERENCING
        Here we pull in Javascript files for the page.
@@ -42,5 +41,4 @@
           (It's located on your computer: BASE/public/pointer-drag/script.js)
        -->
   <script src="script.js"></script>
-</body>
-</html>
+</body></html>

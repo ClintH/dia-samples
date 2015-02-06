@@ -96,8 +96,8 @@ function onDrag(e) {
 	// Gesture field has the juicy info
 	var g = e.gesture;
 
-	// Divide by 1000 to make control much sloooower
-	var scaledDistance = g.distance / 1000;
+	// Divide to make control sloooower
+	var scaledDistance = g.distance / 100;
 
 	var newH = hValue;
 	var newS = sValue;
@@ -143,7 +143,8 @@ function updateValue(newH, newS, newL) {
 	sValue = newS;
 	lValue = newL;
 
-	// Update a info box (useful for debugging)
+	// Update a info box
+	// (useful for debugging, but hidden by default)
 	$("#hValue").text(Math.round(hValue));
 	$("#sValue").text(Math.round(sValue));
 	$("#lValue").text(Math.round(lValue));

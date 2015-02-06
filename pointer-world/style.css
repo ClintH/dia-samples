@@ -17,5 +17,13 @@ body {
   width: 100px;
   border-radius: 100%;
   background: blue;
-  border: 1px solid white;
+}
+
+.ownCursor {
+  border: 1px solid white;  
+}
+
+#tip {
+  padding: 2em;
+  width: 10em;
 }

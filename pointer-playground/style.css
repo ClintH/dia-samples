@@ -24,6 +24,9 @@ aside {
   height: 90%;
 }
 
+#lastEvent {
+  float: left;
+}
 aside>div {
   border-bottom: 1px solid gray;
 }

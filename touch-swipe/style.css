@@ -9,3 +9,8 @@ body {
   background: black;
   -ms-touch-action: none;
 }
+
+section {
+	color: white;
+	padding: 2em;
+}

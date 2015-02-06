@@ -30,13 +30,22 @@ function onPointerMove(e) {
   var intersecting = $(".targetBox").findIntersecting("#dragBox");
   // 		Tip: you can also use 'findNotIntersecting' to get a list of those elements that DON'T intersect
 
-  // set some text for those that intersect
+  // Set some text for those that intersect
+  // Note that 'intersecting' might be zero or more elements
   intersecting.text("I've been hit");
 
-  // 'intersects' simply returns true or false if anything with class 'targetBox'
-  // intersects with element of id 'dragBox'
-  var intersects = $('.targetBox').intersects('#dragBox');
-  if (intersects)
+  // We could use a for loop to do something to each intersecting element if we wanted:
+  /*
+  for (var i=0; i<intersecting.length; i++) {
+    var element = intersecting[i];
+    $(element).text("Hit #" + (i+1));
+  }
+  */
+
+  // 'intersects' simply returns true or false if anything with 
+  // class 'targetBox' intersects with element of id 'dragBox'
+  var isIntersecting = $('.targetBox').intersects('#dragBox');
+  if (isIntersecting)
   	$("#dragBox").css("background-color", "red");
   else
   	$("#dragBox").css("background-color", ""); // Un-set colour so it goes back to the default
