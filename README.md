@@ -3,11 +3,10 @@ dia-samples
 
 A collection of interactivity-oriented samples of using Javascript. There is a rough progression in terms of the amount of commenting. From simplest to most complex: square, touch, pointer, speech, audio, geo, motion, orientation.
 
-The samples should be placed within a `public/dia-samples/` directory where you ran the Kattegat generator.
+The samples are placed within a `public/dia-samples/` directory where you ran the Kattegat generator.
 
 The code for each sample is well-documented, and further notes are in a README.md provided with each sample. You can also [browse the README files via Github.com](https://github.com/ClintH/dia-samples).
 
-Download the samples from the [Github website](https://github.com/ClintH/dia-samples/) as a [zip](https://github.com/ClintH/dia-samples/archive/master.zip) file, or clone the repository with git (see below).
 
 ## Kattegat Generator
 
@@ -15,42 +14,13 @@ If you have installed [Kattegat](https://github.com/ClintH/kattegat/), the sampl
 
 Warning: Do not edit the samples inside the dia-samples folder. Instead copy a sample you want to work on to `public\` and work on it there. That way your work will not be overriden when you update.
 
-If you want to update the pre-installed samples, run:
+If you want to update the pre-installed samples, run the following in the directory your Kattegat project was made:
 
 ````
-$ grunt update
+$ grunt samplesUpdate
 `````
 
-(which will update the samples along with some other Kattegat things)
-
-or to update just the samples:
-
-````
-$ cd public/dia-samples
-$ git pull
-````
-
-## Downloading via git
-Change to a directory where you would like to keep a copy of the samples. For example:
-
-````
-$ cd /Users/clint/code
-````
-
-Use git to clone a copy of the repository:
-
-````
-$ git clone https://github.com/ClintH/dia-samples.git
-````
-
-You can now copy this into the `BASE\public\` directory for Kattegat, and hack on it there.
-
-If the samples get updated, simply go to dia-samples subdirectory and pull changes:
-
-````
-$ cd /Users/clint/code/dia-samples
-$ git pull
-````
+**Note** this will overwrite any changes you've made inside of the dia-samples folder.
 
 ## Remote debugging
 
