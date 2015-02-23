@@ -1,0 +1,55 @@
+html, head, #game {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	height: 100%;
+}
+
+#game {
+	border: 2px solid white;
+}
+
+#ball {
+	display: inline-block;
+	background-color: #323232;
+	position: absolute;
+}
+
+.paddle {
+	position: absolute;
+	width: 10px;
+	color: white;
+	border-radius: 10px;
+}
+
+#pong-1Paddle {
+	background-color: #e21c7a;
+}
+
+#pong-2Paddle {
+	background-color: #3375c8;
+}
+
+#pong-1Stats {
+	color: #e21c7a;
+}
+
+#pong-2Stats {
+	color: #3375c8;
+}
+
+.controller {
+	padding: 2em;
+}
+
+#stats {
+	left: 50%;
+	padding: 1em;
+	top: 0;
+	position: fixed;
+	font-size: 200%;
+	left: 40%;
+}

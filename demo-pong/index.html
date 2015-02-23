@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html><head>
+	<title>Controller</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, target-densitydpi=device-dpi">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<link rel='stylesheet' href='/bower_components/pure/pure-min.css'>
+	<link rel='stylesheet' href='/base.css'>
+	<link rel='stylesheet' href='style.css'>
+</head>
+<body class="controller" kattegat-livereload="true">
+	<section id="chooseTeam">
+		<p>
+			Choose your team</p>
+		<button id="btnTeam1" class="button pure-button">Llamas</button>
+		<button id="btnTeam2" class="pure-button">Ferrets</button>
+		<p>
+			As a team, tilt your device to the left or right to move your paddle</p>
+	</section>
+	<section style="display:none" id="joining">
+		<p>Joining team...</p>
+	</section>
+	<section style="display:none" id="controller">
+		<p>GAME ON</p>
+		<div class="stats">
+			Vector: <span id="vector">?</span><br />
+			Team members: <span id="teamSize">1</span>
+		</div>
+
+	</section>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="/bower_components/libraries.js"></script>
+	<script src="controller.js"></script>
+</body></html>
