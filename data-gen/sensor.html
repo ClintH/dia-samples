@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html><head>
+	<title>data-gen: sensor</title>
+
+	<!-- Make the sketch a bit more mobile-friendly -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, target-densitydpi=device-dpi">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	
+	<!-- Reference the base stylesheets. 
+       You don't need to use them but they are a useful starting point.
+       -->
+	<link rel='stylesheet' href='/bower_components/pure/pure-min.css'>
+	<link rel='stylesheet' href='/base.css'>
+
+	<!-- If you want to make changes,
+	     edit BASE/public/template/style.css
+	     -->
+	<link rel='stylesheet' href='style.css'>
+
+</head>
+<body kattegat-livereload="true">
+	<h1>data-gen: sensor</h1>
+	<p>
+		This generator produces fake sensor data, as if you were measuring temperature, air quality and so on.
+		Start and stop the generator with the button below.
+		</p>
+	<div>
+		<button class="running" id="btnRun">Start</button><br />
+		<canvas width="500" height="400" id="chart">
+		</canvas><br />
+		Last value: <span id="lastValue"></span><br />
+		Gradient (short term): <span id="trendShort"></span><br />
+		Average (long term): <span id="trendLong"></span><br />
+	</div>
+	<h2>Configure</h2>
+	<form class="pure-form pure-form-aligned"><fieldset>
+		<div class="pure-control-group">
+			<label for="position">Rate</label>
+			<input type="range" min="100" max="1000" value="0" id="configRate">
+			<span id="configRateDisplay"></span>
+		</div>
+		<div class="pure-control-group">
+			<label for="position">Depth</label>
+			<input type="range" min="1" max="30" value="0" id="configDepth">
+			<span id="configDepthDisplay"></span>
+		</div>
+		<div class="pure-control-group">
+			<label>Randomness</label>
+			<input type="range" min="0" max="100" value="0" id="configRandomness">
+		</div>
+	</fieldset></form>
+
+	<!-- Import libraries such as jQuery etc -->
+	<script src="/bower_components/libraries.js"></script>
+
+
+	<!-- Add in Socket.io: this is needed for any realtime stuff -->
+	<script src="/socket.io/socket.io.js"></script>
+
+
+	<!-- Import our own Javascript which is special for this sketch. -->
+	<script src="script.js"></script>
+</body></html>
