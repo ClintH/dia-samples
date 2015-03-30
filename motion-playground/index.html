@@ -12,13 +12,47 @@
 </head>
 <body kattegat-livereload="true"  touch-action="none">
   <h1>motion-playground</h1>
-  <p>Choose a motion property to explore</p>
+  <p class="notMobile" id="loadPrompt">Load this page on your mobile or tablet to see a data plot here.</p>
+  <div class="notMobile" id="dataDisplay">
+    <div id="chartOpts">
+      Source: <select id="whichData">
+        <option value="acceleration">acceleration</option>
+        <option value="accelerationIncludingGravity">acceleration due to gravity</option>
+        <option value="rotationRate">rotation</option>
+      </select>
+      Processing: <select id="whichProcessing">
+        <option>raw</option>
+        <option>smoothed</option>
+        <option>gradient</option>
+      </select>
+    </div>
+    <canvas width="500" height="400" id="chart"></canvas>
+  
+    <div id="data0" class="data">
+      <h3 style="color:red">X</h3>
+      <span></span>
+    </div>
 
-  <ul>
-    <li><a href="acceleration/index.html">acceleration</a></li>
-    <li><a href="accelerationincludinggravity/index.html">accelerationIncludingGravity</a></li>
-    <li><a href="rotationrate/index.html">rotationrate</a></li>
-  </ul>
+    <div id="data1" class="data">
+      <h3 style="color:blue">Y</h3>
+      <span></span>
+    </div>
 
+    <div id="data2" class="data">
+      <h3 style="color:green">Z</h3>
+      <span></span>
+    </div>
+  </div>
+
+  <div class="mobile">
+    Open up the same sketch on your laptop to see data coming from this device.
+  </div>
+
+  <!-- Add in Socket.io: this is needed for any realtime stuff -->
+  <script src="/socket.io/socket.io.js"></script>
+
+  <!-- Load in libraries and our own script -->
+  <script src="/bower_components/libraries.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

@@ -1,0 +1,13 @@
+#overlay {
+  display: none;
+}
+
+.data {
+	float: left;
+	padding: 0.5em;
+}
+
+canvas {
+	clear: both;
+	float: left;
+}
