@@ -1,12 +1,9 @@
-var video = null;
-var preview = null;
-var buffer = null;
-var c = null;
-var imgU8 = null;
-var tracking = false;
+var max_work_size = 160;
+var ctx,canvasWidth,canvasHeight;
+var img_u8,work_canvas,work_ctx;
 
 // Sample is a port of jsfeat's sample_bbf_face' demo
-//  http://inspirit.github.io/jsfeat/sample_bbf_face.html
+//  https://github.com/inspirit/jsfeat/blob/gh-pages/sample_bbf_face.html
 $(document).ready(function() {
 	// Prevent normal iOS/Android touch gestures
 	$('body').on('touchmove', function(e) { e.preventDefault() });
@@ -52,64 +49,62 @@ function initVideo() {
 
   // Try to get the user's webcam stream
   try {
-    c.getUserMedia({video:true}, function(stream) {
+    var attempts = 0;
+    var readyListener = function(event) {
+      findVideoSize();
+    };
+    var findVideoSize = function() {
+      if (video.videoWidth > 0 && video.videoHeight > 0) {
+        video.removeEventListener('loadeddata', readyListener);
+        onDimensionsReady(video.videoWidth, video.videoHeight);
+      } else {
+          if (attempts < 10) {
+            attempts++;
+            setTimeout(findVideoSize, 200);
+          } else {
+            onDimensionsReady(640, 480);
+          }
+      }
+    };
+    var onDimensionsReady = function(width, height) {
+      initCanvas(width, height);
+      c.requestAnimationFrame(calculate);
+    };
+    video.addEventListener('loadeddata', readyListener);
+    c.getUserMedia({video: true}, function(stream) {
       try {
         video.src = c.URL.createObjectURL(stream);
-      } catch (e) {
+      } catch (error) {
         video.src = stream;
       }
       setTimeout(function() {
-        // Start playback of webcam stream
         video.play();
-
-        // Initialise canvas
-        initCanvas();
-
-        // This will call 'calculate' at a high rate
-        c.requestAnimationFrame(calculate);
-      }, 500); // Call the stuff above after half a second
-    }, function(e) {
-      kattegat.notifyError("Webcam not available on this platform");
-      console.log(e);
-    })   
-  } catch (e) {
-    kattegate.notifyError("Webcam not available on this platform");
-    console.log(e);
+      }, 500);
+    }, function (error) {
+        kattegat.notifyError("Webcam not available on this platform");
+        console.log(error);
+    });
+  } catch (error) {
+    kattegat.notifyError("Webcam not available on this platform");
+    console.log(error);
   }
 }
 
 // Sets up the canvas
-function initCanvas() {
-  var maxWorkSize = 160;
-  
-  // Set up a canvas to display a preview image
-  preview = {};
-  preview.canvas = $("#canvas").get(0);
-  preview.width = canvas.width;
-  preview.height = canvas.height;
-  preview.middleX = canvas.width/2;
-  preview.middleY = canvas.height/2;
-  preview.ctx = canvas.getContext('2d');
-  preview.ctx.fillStyle = "rgb(0,255,0)";
-  preview.ctx.strokeStyle = "rgb(0,255,0)";
-
-  var scale = Math.min(
-    maxWorkSize/video.videoWidth, 
-    maxWorkSize/video.videoHeight
-  );
-  var w = (video.videoWidth*scale)|0;
-  var h = (video.videoHeight*scale)|0;
-
-  imgU8 = new jsfeat.matrix_t(w, h, jsfeat.U8_t | jsfeat.C1_t);
-  
-  // Set up a memory buffer to do processing
-  buffer = {};
-  buffer.canvas = document.createElement('canvas');
-  buffer.width = w;
-  buffer.height = h;
-  buffer.ctx = buffer.canvas.getContext('2d');
-  
-  // Set up image processing
+function initCanvas(videoWidth, videoHeight) {
+  canvasWidth  = canvas.width;
+  canvasHeight = canvas.height;
+  ctx = canvas.getContext('2d');
+  ctx.fillStyle = "rgb(0,255,0)";
+  ctx.strokeStyle = "rgb(0,255,0)";
+  var scale = Math.min(max_work_size/videoWidth, max_work_size/videoHeight);
+  var w = (videoWidth*scale)|0;
+  var h = (videoHeight*scale)|0;
+  img_u8 = new jsfeat.matrix_t(w, h, jsfeat.U8_t | jsfeat.C1_t);
+  work_canvas = document.createElement('canvas');
+  work_canvas.width = w;
+  work_canvas.height = h;
+  work_ctx = work_canvas.getContext('2d');
   jsfeat.bbf.prepare_cascade(jsfeat.bbf.face_cascade);
 }
 
@@ -134,16 +129,17 @@ function onFaceRectangles(rects) {
     // Calculate size of face relative to camera size
     var area = (r.width*r.height)/(video.width*video.height);
     
-    // Area never seems to get beyond 0.0-0.2
+    // Area never seems to get beyond 0.0-0.07
     // Scale up to 0.0-1.0
-    area = kattegat.rangeScale(area, 0, 0.2, 0, 1.0);
-
+    //area = kattegat.rangeScale(area, 0, 0.07, 0, 1.0);
+    area = area / 0.007;
+  
     // Do stuff with just the highest confidence face       
     if (i == 0) {
       // Show the face size (area)
       $("#faceArea").text(area.toFixed(2));
       // Map the face size to font size
-      area = 400 - Math.pow(area,2) * 400;
+      area = area * 200;
       $("#box").css("font-size", area+ "%");
 
       // Get current position of the box
@@ -151,7 +147,7 @@ function onFaceRectangles(rects) {
 
       // Calculate how far we are from the middle
       // and get a relative measure
-      var fromMiddle = (r.x + (r.width/2) - preview.middleX) / preview.width;
+      var fromMiddle = (r.x + (r.width/2) - work_canvas.width/2) / work_canvas.width;
       
       // If we're pretty close to the middle, don't move
       // Math.abs gives us the 'absolute number', changing negative to postive
@@ -175,7 +171,7 @@ function onFaceRectangles(rects) {
     // ...we could do stuff with the other rects we get though!
 
     // Draw a rectangle to help our debugging
-    preview.ctx.strokeRect(r.x,r.y,r.width,r.height);  
+    ctx.strokeRect(r.x,r.y,r.width,r.height);  
   }
 }
 
@@ -189,37 +185,24 @@ function onUnload() {
 // This is complicated stuff, the most interesting thing is that
 // 'onFaceRectangles' is called when it has recognised some faces!
 function calculate() {
+  c.requestAnimationFrame(calculate); // Get function to be called again
   if (video.readyState == video.HAVE_ENOUGH_DATA) {
-
-    // Draw image to preview canvas
-    if (!preview.hidden)
-      preview.ctx.drawImage(video, 0, 0, preview.width, preview.height);
-    
-    // Draw image to processing buffer
-    buffer.ctx.drawImage(video, 0, 0, buffer.width, buffer.height);
-    
-    // Now that it's drawn, we are able to copy into memory
-    var data = buffer.ctx.getImageData(0, 0, buffer.width, buffer.height);
-
-    jsfeat.imgproc.grayscale(data.data, imgU8.data);
-    var pyr = jsfeat.bbf.build_pyramid(imgU8, 24*2, 24*2, 4);
-
+    ctx.drawImage(video, 0, 0, canvasWidth, canvasHeight);
+    work_ctx.drawImage(video, 0, 0, work_canvas.width, work_canvas.height);
+    var imageData = work_ctx.getImageData(0, 0, work_canvas.width, work_canvas.height);
+    jsfeat.imgproc.grayscale(imageData.data, work_canvas.width, work_canvas.height, img_u8);
+   
+    // possible options
+    //jsfeat.imgproc.equalize_histogram(img_u8, img_u8);
+    var pyr = jsfeat.bbf.build_pyramid(img_u8, 24*2, 24*2, 4);
     var rects = jsfeat.bbf.detect(pyr, jsfeat.bbf.face_cascade);
     rects = jsfeat.bbf.group_rectangles(rects, 1);
+   
+    // draw only most confident one
+    drawFaces(ctx, rects, canvasWidth/img_u8.cols, 1);
 
     // Sort in order of confidence
-    jsfeat.math.qsort(rects, 0, rects.length-1, 
-      function(a,b) { return (b.confidence<a.confidence);
-    });
-
-    var scale= canvas.width/imgU8.cols;
-    for (var i=0;i<rects.length; i++) {
-      rects[i].width = (rects[i].width * scale)|0;
-      rects[i].height = (rects[i].height * scale)|0;
-      rects[i].x = (rects[i].x * scale)|0;
-      rects[i].y = (rects[i].y * scale)|0;
-    }
-    
+    jsfeat.math.qsort(rects, 0, rects.length-1, function(a,b){return (b.confidence<a.confidence);})
     if (rects.length == 0) {
       // No faces
       if (tracking) {
@@ -227,13 +210,23 @@ function calculate() {
         setTimeout(onLostFace, 200);
       }
     } else if (!tracking) {
-      // Started tracking again
       tracking = true;
       setTimeout(onGotFace, 200);
     }
-
-    // Do something with result of processing
     onFaceRectangles(rects);
   }
-  c.requestAnimationFrame(calculate); // Get function to be called again
+}
+
+function drawFaces(ctx, rects, sc, max) {
+    var on = rects.length;
+    if (on && max) {
+      jsfeat.math.qsort(rects, 0, on-1, function(a,b){return (b.confidence<a.confidence);})
+    }
+    var n = max || on;
+    n = Math.min(n, on);
+    var r;
+    for (var i = 0; i < n; ++i) {
+      r = rects[i];
+      ctx.strokeRect((r.x*sc)|0,(r.y*sc)|0,(r.width*sc)|0,(r.height*sc)|0);
+    }
 }

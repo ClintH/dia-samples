@@ -4,7 +4,7 @@ This demo shows you how to store a coordinate and compare it with live coordinat
 
 When the user clicks "Start", we start periodically fetching the location using `setTimeout`. The basic `geolocation.getCurrentPosition` function is used to request the device position, and the UI is updated on the basis of the calculations (`geolib.getDistance()` and `geolib.getSpeed()`)
 
-If the user hits 'Stop', we abort the timer.
+If the user hits 'Stop', we cancel the timer.
 
 Things to try:
 * Using previous audio demos, can you make a luggage minder which sets off an alarm when it strays too far?

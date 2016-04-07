@@ -1,10 +1,10 @@
 # touch-solar
 
-Demo is based on [Hammerjs](http://eightmedia.github.io/hammer.js/) events.
+Best tried out on a touch device.
 
 Interactions:
 
 * `tap` creates a new star
 * `pinch` create a new planet
 * `rotate` adjust the color of a planet (works together with pinch)
-* `hold` remove a planet
+* `press` remove a planet

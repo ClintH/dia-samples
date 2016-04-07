@@ -50,7 +50,7 @@ function onPositionError(error) {
 
 // Called when our 'getCurrentPosition' request finishes and there is a position
 function onPositionReceived(e) {
-	var coords = e.coords;
+	var coords = _.toPlainObject(e.coords);
 
 	// Show current info for debug use
 	$("#position").text(JSON.stringify(coords));
@@ -95,24 +95,29 @@ function updateUsersDisplay() {
 	});
 }
 
+function getSimpleId(e) {
+	return e._clientId.replace("/", "").replace("#", "");
+}
+
 // Triggered when ever we receive data from another client
 function onSay(e) { 
+	var id = getSimpleId(e);
 	if (e.coords) {
 		// Got some coordinates
 
 		// Keep track of location, by associating received
 		// data with the 'users' array
-		users[e._clientId] = e;
+		users[id] = e;
 
 		// Update HTML element for user
-		var selector = addOrGetUser(e._clientId);
+		var selector = addOrGetUser(id);
 
 		$(".swatch", selector).css("background-color", e.colour);
 		$("h1", selector).text(e.name);	
 	} else if (e.pulse) {
 		// Received a pulse. Look up sender and
 		// do something funky to their HTML element
-		var selector = addOrGetUser(e._clientId);
+		var selector = addOrGetUser(id);
 		$(selector).transition({
 			"background-color": "red"
 		}, 500, function() {

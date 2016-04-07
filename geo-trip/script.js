@@ -26,10 +26,8 @@ function onPositionError(error) {
 
 // Called when our 'getCurrentPosition' request finishes and there is a position
 function onPositionReceived(e) {
-	var coords = e.coords;
+	var coords = _.toPlainObject(e.coords);
 	coords.time = e.timestamp; // Keep track of when measurement was made
-	
-	console.dir(coords);
 	
 	if (startPos == null) {
 		// Haven't got a position yet, so use this one as the start

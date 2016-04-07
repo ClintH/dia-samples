@@ -14,29 +14,30 @@ $(document).ready(function() {
 		radiusMeters: 5000
 	};
 
-	// Add a zone for ITU's D-wing
-	circleZones["d-wing"] = {
-		coords: [55.659146650597144, 12.591179609298706],
-		radiusMeters: 20
+	// Add a zone for all of Malmö
+	circleZones["malmo"] = {
+		coords: [55.60612973931359, 13.000516891479492],
+		radiusMeters: 5000
 	};
 
-	// Add a zone for whole of ITU
-	circleZones["itu"] = {
-		coords: [55.659618726889526, 12.591083049774168],
+	// Add a zone for Niagara
+	circleZones["niagara"] = {
+		coords: [55.60782588262548, 12.996429204940796],
 		radiusMeters: 400
 	};
 
-	// Add a zone for atrium
-	circleZones["atrium"] = {
-		coords: [55.659618726889526, 12.591083049774168],
+	// Add a zone for whole of Orkanen
+	circleZones["orkanan"] = {
+		coords: [55.61075892385922, 12.995409965515137],
+		radiusMeters: 400
+	};
+
+	// Add a zone for west side of Niagara
+	circleZones["west"] = {
+		coords: [55.60771073810238, 12.99606442451477],
 		radiusMeters: 30
 	};
 
-	// Add a zone for Kong Kaffe
-	circleZones["kong-kaffe"] = {
-		coords: [55.66033893487981, 12.592155933380127],
-		radiusMeters: 30
-	};
 
 	// Add each zone to page for debugging purposes
 	_.each(circleZones, function(zone, name) {
@@ -54,7 +55,6 @@ $(document).ready(function() {
 // This function calls itself every 1000 milliseconds,
 // looping until the timer is called
 function requestLocationLoop() {
-
 	navigator.geolocation.getCurrentPosition(onPositionReceived, onPositionError, {
 		enableHighAccuracy: true,
 		timeout: 10000
@@ -71,7 +71,7 @@ function onPositionError(error) {
 
 // Called when our 'getCurrentPosition' request finishes and there is a position
 function onPositionReceived(e) {
-	var coords = e.coords;
+	var coords = _.toPlainObject(e.coords);
 
 	// Show current info
 	$("#position").text(JSON.stringify(coords));

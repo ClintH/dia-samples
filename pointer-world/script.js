@@ -58,11 +58,16 @@ function onPointerMove(e) {
 	onSay(data);
 }
 
+// Remove / and # characters that appear in the client id
+function getSimpleId(e) {
+	return e._clientId.replace("/","").replace("#", "");
+}
+
 // Called when ever we receive a message
 // from another page
 function onSay(e) {
 	// Hide tip if the user seems to have got it
-	if (e._clientId !== "0") $("#tip").fadeOut();
+	if (getSimpleId(e) !== "0") $("#tip").fadeOut();
 
 	// Get the window dimensions
 	var windowWidth = $(window).innerWidth();
@@ -97,7 +102,7 @@ function getOrCreateCursor(e) {
 	// Cursors have an id of something like:
 	//	cursor-1-TiF7PmuoDrlXPRWYsuyx
 	// This is based on their server id, and the id of the pointer (necessary for multitouch)
-	var cursorId = "cursor-" +e.id+"-"+ e._clientId;
+	var cursorId = "cursor-" +e.id+"-"+ getSimpleId(e);
 	var cursorSelector = "#" + cursorId;
 
 	// Check to see if an element exists:
@@ -109,7 +114,7 @@ function getOrCreateCursor(e) {
 
 		// If it is our user's own cursor, add an extra CSS class
 		// so it is rendered differently
-		if (e._clientId == "0") {
+		if (getSimpleId(e) == "0") {
 			$(cursorSelector).addClass("ownCursor");
 		}
 	} 

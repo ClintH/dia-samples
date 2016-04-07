@@ -30,3 +30,6 @@ This sample introduces you to:
 * Random number generation [more](http://www.codecademy.com/glossary/javascript#math)
 * Associating data with DOM elements [more](http://api.jquery.com/jquery.data/)
 * Iterating through arrays [more](http://www.codecademy.com/glossary/javascript#arrays_accessing-array-elements)
+
+# See also
+* The 'square-decouple' takes this basic sample and allows you to operate it between different devices

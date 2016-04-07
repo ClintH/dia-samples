@@ -58,7 +58,7 @@ function onSetRangeClick() {
 
   // Reset and notify
   onRangeResetClick();
-  kattegat.notify("Se|t new range to " + rangeStart +"-" +rangeEnd);
+  kattegat.notify("Set new range to " + rangeStart +"-" +rangeEnd);
 }
 
 // Reset the range high/low/smoother
@@ -73,7 +73,6 @@ function onOverallResetClick() {
   overallHigh = 0;
   overallLow = 99999;
   overallSmoother = new Smoother(smoothSamples); 
-
 }
 
 // User clicked the 'listen' button
@@ -81,7 +80,11 @@ function onListenClick(e) {
   $(e.target).attr("disabled", "disabled");
 
   navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia;
-  navigator.getUserMedia({audio:true}, onStream);
+  navigator.getUserMedia({audio:true}, onStream, function(e) {
+    // Failure
+    console.log(e);
+    kattegat.notifyError(e);
+  });
 }
 
 // Called via onListenClick, when user has
@@ -120,11 +123,9 @@ function onProcessData() {
   // Do something with calculated overall volume
   handleOverallAverage(average);
 
-  // Draw pretty lines
-  // drawSimpleGraph(array);
- 
   // Draw pretty lines, highlighting the range
   drawRangeGraph(array, rangeStart, rangeEnd);
+
   // Calculate average over range
   var rangeAverage = Math.round(getRangeAverage(array, rangeStart, rangeEnd));
   rangeSmoother.push(rangeAverage);
@@ -133,6 +134,22 @@ function onProcessData() {
   handleRangeAverage(rangeAverage);
 }
 
+
+// Updates the text labels to show calculated range values
+function handleRangeAverage(average) {
+  // At this point we could also do something if the volume
+  // is higher or lower than a certain threshold
+  
+  // console.log(average);
+  // if (average > 10) {
+  //   kattegat.notify("Hit some threshold!");
+  // }
+  displayRangeAverage(average);
+
+}
+
+// ---- All the code below here relates to updating labels
+//      and drawing the graph. It can be removed
 // Draw all the data without highlighting
 function drawSimpleGraph(array) {
   drawRangeGraph(array,999,999);
@@ -152,11 +169,7 @@ function drawRangeGraph(array, start, stop) {
   }
 }
 
-
-// Updates the text labels to show calculated range values
-function handleRangeAverage(average) {
-  // At this point we could also do something if the volume
-  // is higher or lower than a certain threshold
+function displayRangeAverage(average) {
   if (average > rangeHigh) {
     rangeHigh = average;
     $("#range .rangeHigh").text(rangeHigh);
@@ -170,7 +183,7 @@ function handleRangeAverage(average) {
   $("#range .liveValue").text(average);  
 }
 
-// Updates the text laels to show calculated overall values
+// Updates the text labels to show calculated overall values
 function handleOverallAverage(average) {
   // At this point we could also do something if the volume
   // is higher or lower than a certain threshold

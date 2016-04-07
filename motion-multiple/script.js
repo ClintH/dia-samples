@@ -16,7 +16,7 @@ $(document).ready(function() {
   socket.on('leave', onLeave);
 
 
-  // Trigger is mobile show overlay
+  // Show or hide overlay
   if (kattegat.device.mobile()) {
     $('section').hide();
     $('#overlay').show();
@@ -55,7 +55,7 @@ function onDeviceMotion(e) {
 
 // When a client joins the room
 function onJoin(e) {
-  var id = e.id;
+  var id = getSimpleId(e);
 
   clients[id] = {
     x: new Smoother(sampleSize),
@@ -67,8 +67,18 @@ function onJoin(e) {
   updateTotal();
 }
 
+function getSimpleId(e) {
+  console.dir(e);
+  if (e._clientId)
+    return e._clientId.replace("/", "").replace("#", "");
+  else
+    return e.id.replace("/", "").replace("#", "");
+}
+
 function onSay(e) {
-  var id = e._clientId;
+  var id = getSimpleId(e);
+  // Could use other motion properties, such as:
+  //    acceleration, rotationRate
   var motion = e.accelerationIncludingGravity;
   var client = clients[id];
 
@@ -84,8 +94,7 @@ function onSay(e) {
 
 // When a client leaves the room
 function onLeave(e) {
-  // Server provides an 'id' property for the user
-  var id = e.id;
+  var id = getSimpleId(e);
 
   // Delete id from users we are tracking
   delete clients[id];
@@ -95,7 +104,7 @@ function onLeave(e) {
 
 //As soon as we connect to the server, join a "room"
 function onHello(e) {
-  myId = e.id;
+  myId = getSimpleId(e);
   socket.emit('join', { room: roomName });
   //Update myid information
   $('#myid').html('id: '+ myId);

@@ -7,18 +7,16 @@ $(document).ready(function() {
   });
 
   // Initialise Hammer (important!)
-  $('body').hammer({prevent_default:true});
-
-  // Enable extra debug on desktop browsers
-  Hammer.plugins.showTouches();
-  Hammer.plugins.fakeMultitouch();
+  var hammertime = new Hammer($('body').get(0), {domEvents:true});
+  hammertime.get('pinch').set({enable:true});
+  hammertime.get('rotate').set({enable:true});
 
   // Listen for Hammer.js-provided events
-  $('body').on('tap', onTap);
-  $('body').on('pinch', onPinch);
-  $('body').on('rotate', onRotate);
-  $('body').on('release', onRelease);
-  $('body').on('hold', onHold);
+  hammertime.on('tap', onTap);
+  hammertime.on('pinch', onPinch);
+  hammertime.on('rotate', onRotate);
+  hammertime.on('pinchend', onPinchEnd);
+  hammertime.on('press', onPress);
 });
 
 
@@ -26,9 +24,9 @@ $(document).ready(function() {
  * Create a new star
 */
 function onTap(e) {
-  //Get the coordinates
-  var top = e.gesture.center.pageY;
-  var left = e.gesture.center.pageX;
+   //Get the coordinates
+  var top = e.center.y;
+  var left = e.center.x;
 
   //Create a star with the correct position
   var star = $('<aside></aside>')
@@ -47,9 +45,9 @@ function onTap(e) {
 function onPinch(e) {
   //Get the coordinates
   var size = 10;
-  var top = e.gesture.center.pageY;
-  var left = e.gesture.center.pageX;
-  var scale = e.gesture.scale;
+  var top = e.center.y;
+  var left = e.center.x;
+  var scale = e.scale;
 
   if (planet) {
     //adjust the size
@@ -78,14 +76,13 @@ function onPinch(e) {
 
 /* Adjust the planet color based on rotation */
 function onRotate(e) {
-  var rotation = e.gesture.rotation;
-  var hue = rotation + 360;
+  var rotation = e.rotation;
+  var hue = rotation + 127;
 
   // Make sure hue does not exceed 360 - the highest possible value
   hue = Math.min(hue, 360);
 
   if (planet) {
-    // HSL values: http://hslpicker.com/
     planet.css({
       'background-color': 'hsl('+hue+',100%,20%)'
     });
@@ -93,17 +90,16 @@ function onRotate(e) {
 }
 
 /* Cleanup references */
-function onRelease() {
-  //cleanup
+function onPinchEnd() {
   planet = null;
 }
 
 /*
  * Delete a planet
 */
-function onHold(e) {
+function onPress(e) {
   var target = e.target;
-
+  planet = null;
   // All the planets are made from HTML '<figure>' elements, so we can easily check
   // if it's a planet or not
   if (target.tagName === 'FIGURE') {

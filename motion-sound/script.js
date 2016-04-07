@@ -71,7 +71,9 @@ function onSay(motion) {
 
 function updateSound(motion) {
   var z = motion.z;
-
+  if (_.isNaN(z)) z = 0;
+  if (_.isNaN(volume)) volume = 0;
+  
   // Make it an integer: 1.111 = 1
   z = Math.round(z);
 
@@ -86,6 +88,7 @@ function updateSound(motion) {
   volume = Math.min(1, volume);
 
   // Apply new values if web audio was initalised
+  console.log("z: " + z + " vol: " + volume);
   if (gain) {
     gain.gain.value = volume;
   }

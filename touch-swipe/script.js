@@ -5,18 +5,18 @@ $(document).ready(function() {
   });
 
   // Important! Initialise Hammer
-  $('body').hammer();
+  var hammertime = new Hammer($('body').get(0));
 
-  // Listen for swipe event on the body
-  $('body').on('swipe', onSwipe);
+  // Listen for 'swipe' events
+  hammertime.on('swipe', onSwipe);
+
 });
 
 
 // Change color based on velocity
 function onSwipe(e) {
-  var velocityX = e.gesture.velocityX;
-  var max = 4; // The highest allowed velocity value
-  var percentage = velocityX / max;
+  var max = 6; // The highest allowed velocity value
+  var percentage = e.velocityX / max;
   
   // Make sure we don't exceed 1
   percentage = Math.min(percentage, 1);

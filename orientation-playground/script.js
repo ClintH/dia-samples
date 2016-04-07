@@ -20,15 +20,19 @@ $(document).ready(function() {
 
 function onDeviceOrientation(e) {
   var motion = e.originalEvent;
-  var rotation = {
-    alpha: motion.alpha,
-    beta: motion.beta,
-    gamma: motion.gamma
+
+  // Grab the motion data
+  // (we could of course send other data instead)
+  var data = {
+    rotation: {
+      alpha: motion.alpha,
+      beta: motion.beta,
+      gamma: motion.gamma
+    }
   };
 
-  socket.emit('say', {
-    rotation: rotation
-  });
+  // Send it to the server
+  socket.emit('say', data);
 }
 
 //Do something with the data from a third device (Phone, tablet etc.)

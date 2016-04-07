@@ -33,15 +33,14 @@ $(document).ready(function() {
   audio = kattegatAudio.initialize();
   kattegatAudio.loadSet(samples);
 
-  // Hammer time!
-  $('body').hammer({prevent_default:true});
+  $(".source").hammer();
 
   // Listen for user interaction
-  $("#startButton").on("click", onStartClick);
-  $("#stopButton").on("click", onStopClick);
-  $("#autoPanButton").on("click", onAutopanClick);
+  $("#startButton").on("pointerup", onStartClick);
+  $("#stopButton").on("pointerup", onStopClick);
+  $("#autoPanButton").on("pointerup", onAutopanClick);
 
-  $(".source").on("drag", onSourceDrag);
+  $(".source").on("pan", onSourceDrag);
   $(".source").on("doubletap", onSourceDoubletap);
  
   
@@ -95,7 +94,7 @@ function onSourceDrag(e) {
   var pos = e.gesture.center;
 
   // Get relative position
-  var relativePixelPos = $(e.target).convertToRelative(pos.pageX, pos.pageY);
+  var relativePixelPos = $(e.target).convertToRelative(pos.x, pos.y);
 
   // Update box position, and move it so the cursor appears in the middle
   $(e.target).css({

@@ -53,8 +53,7 @@ function onPositionError(error) {
 function onPositionReceived(e) {
 	// For debug purposes, print out location data to console and page
 	// (JSON.stringify is useful for printing out the contents of an object)
-	console.dir(e);
-	var coords = e.coords;
+	var coords = _.toPlainObject(e.coords);
 	$("#locationData").html("Timestamp: " + e.timestamp +"<br />Coords: " + JSON.stringify(coords));
 
 	// Extract some useful parameters

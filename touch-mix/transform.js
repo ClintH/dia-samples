@@ -9,13 +9,17 @@ $(document).ready(function() {
 	// Prevent normal iOS/Android touch gestures
 	$('body').on('touchmove', function(e) { e.preventDefault() });
 
-	// Hammer time
-	$('body').hammer({prevent_default:false});
+	// Hammer time!
+	var hammer = new Hammer($('body').get(0));
+	hammer.get('pan').set({ direction: Hammer.DIRECTION_ALL });
+  hammer.get('pinch').set({enable:true});
+
 
 	// Listen for some events
-	$('body').on('drag', onDrag);
-	$('body').on('pinch', onPinch);
-	$('body').on('doubletap', reset);
+	hammer.on('panmove', onDrag);
+	hammer.on('pinch', onPinch);
+	
+	$('body').on('dlbclick', reset);
 
 	// Connect realtime stuff up
 	socket = io.connect("http://" + window.location.host);
@@ -43,7 +47,7 @@ function onDoubletap(e) {
 	// On touch devices, we sometimes get an extra doubletap
 	// event that we don't want. It seems to have an abnormally
 	// low deltaTime field, so we'll use that to filter them out
-	if (e.gesture.deltaTime < 2) return;
+	if (e.deltaTime < 2) return;
 
 	var swatchCount = $("#swatches").children().length +1;
 
@@ -52,27 +56,24 @@ function onDoubletap(e) {
 }
 
 function onPinch(e) {
-	var g = e.gesture;
-	var newZ = g.scale;
+	var newZ = e.scale;
 	updateValue(xValue, yValue, newZ);
 	emitValues();
 
 }
 function onDrag(e) {
-	// Gesture field has the juicy info
-	var g = e.gesture;
 
 	// Divide by 1000 to make control much sloooower
-	var scaledDistance = g.distance / 100;
+	var scaledDistance = e.distance / 100;
 	var newX = xValue;
 	var newY = yValue;
-	if (g.interimDirection == "right")
+	if (e.direction == 4) // right
 	 	newY += scaledDistance;
-	else if (g.interimDirection == "left")
+	else if (e.direction == 2) // left
 		newY -= scaledDistance;
-	else if (g.interimDirection == "up")
+	else if (e.direction == 8) // up
 		newX += scaledDistance;
-	else if (g.interimDirection == "down")
+	else if (e.direction == 16) // down
 		newX -= scaledDistance;
 	
 	updateValue(newX, newY, zValue);

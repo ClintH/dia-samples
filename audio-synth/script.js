@@ -67,8 +67,8 @@ function onPointerMove(e) {
   if (!isPointerActive) { return; }
 
   var org = e.originalEvent;
-  var x = org.offsetX; //The x coordinate for the pointer on pad
-  var y = org.offsetY; //The y coordinate for the pointer on pad
+  var x = org.x; //The x coordinate for the pointer on pad
+  var y = org.y; //The y coordinate for the pointer on pad
   var noteValue = calculateNote(x); //Get the note based on the X value
   var volumeValue = calculateVolume(y); //Get the volume based on the Y value
 
@@ -90,6 +90,11 @@ function calculateNote(posX) {
 
 // Calculate the volume
 function calculateVolume(posY) {
-  var volumeLevel = 1 - (((100 / $('section').height()) * posY) / 100);
+  // Since posY is relative to the page, we need to subtract where the element (the white box)
+  // appears on the page
+  posY -= $('section').offset().top;
+  // Calculate the volume level of the pointer Y in relation to the height of the element
+  // And then flip the value so high pointer == high volume
+  var volumeLevel = 1-(posY / $('section').height());
   return volumeLevel;
 }

@@ -9,7 +9,6 @@ $(document).ready(function() {
   $("#stopButton").on("click", onStopClick);
 
   // Set up audio and load samples
-  // (initializeAudio and loadSound are found in audio.js)
   audio = kattegatAudio.initialize();
   kattegatAudio.load('loop', 'loop0.mp3');
 
@@ -64,11 +63,11 @@ function setupAndPlayLoop() {
 
 function onPointermove(e) {
   var e = e.originalEvent;
-
+  
   // Get a relative X/Y position according to the
   // pointer position and the size of the box.
-  var relativeX = e.offsetX / $(e.target).outerWidth();
-  var relativeY = e.offsetY / $(e.target).outerHeight();
+  var relativeX = e.x / $(e.target).outerWidth();
+  var relativeY = e.y / $(e.target).outerHeight();
 
   // Make sure we're between 0 and 1.0 (100%)
   relativeX = Math.max(relativeX, 0);

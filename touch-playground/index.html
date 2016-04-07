@@ -17,10 +17,13 @@
        edit BASE/public/touch-playground/style.css
        -->
   <link rel='stylesheet' href='style.css'>
+
+    <script src="/bower_components/TouchEmulator/touch-emulator.js"></script>
+
 </head>
 <body kattegat-livereload="true" >
   <!-- Pointer events are listened to within the section -->
-  <section><div id="lastEvent"></div></section>
+  <section style="touch-action:none"><div id="lastEvent"></div></section>
 
   <!-- We use this element as a log of events -->
   <aside>Touch or move your cursor inside the white box</aside>
@@ -31,9 +34,9 @@
 	     -->
 
 	<!-- Import libraries such as jQuery etc -->
-	<script src="/bower_components/libraries.js"></script>
-  <script src="/bower_components/hammerjs/plugins/hammer.showtouches.js"></script>
-	<script src="/bower_components/hammerjs/plugins/hammer.fakemultitouch.js"></script>
+
+
+	<script src="/bower_components/bower_libs.js"></script>
 	<!-- Load in the sketch script -->
   <script src="script.js"></script>
 

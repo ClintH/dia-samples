@@ -61,7 +61,7 @@ function handleConsole(e) {
 			top: Math.random() * (max - min) + min,
 			position: "absolute"
 		}
-		$('<img height="200" width="200" src="http://randomimage.setgetgo.com/get.php?key=1442937774&height=&width=&type=1">')
+		$('<img height="200" width="200" src="http://thecatapi.com/api/images/get?format=src&type=gif">')
 			.appendTo("body")
 			.css(css);
 

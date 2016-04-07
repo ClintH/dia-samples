@@ -94,6 +94,7 @@ function autoSave() {
 			options: { upsert: true }
 		}
 
+		console.dir(data);
 		$.post("/store/update", data, function(data, status, xhr) {
 			// We don't really care about the response...
 		})		

@@ -11,6 +11,7 @@ The input script extends the grammar of the parser, allowing you to set a colour
 Note: In this contrived example, it's technically possible for the input page to write to the database itself, but in a normal situation, let's presume that only the canvas page is able to write to the server and track the canvas.
 
 ## Dig deeper
+* How can the controller (input.js) be extended to allow the user to place squares at particular locations?
 * How could the system be extended so that multiple canvas's could save to the database without overwriting each other?
 * How would it be to save each square individually, rather than within a single object?
 * Can you implement filtering of squares based on an attribute? For example, to delete all green squares, or all squares with an area less than 100px.
