@@ -1,0 +1,22 @@
+.square {
+	width: 200px;
+	height: 200px;
+	position: absolute;
+}
+
+.canvas {
+	background-color: #FAFAFA;
+}
+#console {
+	position: absolute;
+	top: 1em;
+	left: 1em;
+	font-size: 2em;
+	padding: 0.2em;
+	z-index: 500; /* Make it float above everything */
+	box-shadow: 3px 3px 30px 3px white;
+}
+
+body {
+	-webkit-transform-style: preserve-3d;
+}

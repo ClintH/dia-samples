@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Noodl test</title>
+	<!-- Make the page a bit more mobile-friendly -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, target-densitydpi=device-dpi">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<link rel='stylesheet' href='/bower_components/pure/pure-min.css'>
+	<link rel='stylesheet' href='/base.css'>
+	<link rel='stylesheet' href='style.css'>
+</head>
+<body kattegat-livereload="true">
+
+	<h1>Noodl</h1>
+	<p>This sketch demonstrates sending and receiving data to <a href="http://www.getnoodl.com">Noodl</a> project. Look at the 'noodl-project' directory for details and examples of how to set it up from the Noodl side.</p>
+
+	<h2>Sending</h2>
+	<form class="pure-form">
+		<fieldset>
+			<label>Colour</label>
+			<input name="testColour" placeholder="red">
+			<br />
+			<label>Number</label>
+			<input name="testNumber" placeholder="42">
+			<br />
+			<label>Text</label>
+			<input name="testString" placeholder="Hello!">
+			<br />
+			<button id="sendButton" class="pure-button pure-button-primary">Send</button>
+		</fieldset>
+	</form>
+
+	<h2>Receiving</h2>
+	<label>X</label> <span id="receivedX">-</span><br />
+	<label>Y</label> <span id="receivedY">-</span>
+
+	<!-- Import libraries such as jQuery etc -->
+	<script src="/bower_components/bower_libs.js"></script>
+
+	<!-- Add in Socket.io: this is needed for any realtime stuff -->
+	<script src="/socket.io/socket.io.js"></script>
+
+	<!-- Load in a script just for this sketch -->
+	<script src="index.js"></script>
+
+</body></html>

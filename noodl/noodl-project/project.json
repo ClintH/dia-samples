@@ -1,0 +1,457 @@
+{
+   "name": "Kattegat",
+   "components": [
+      {
+         "name": "/Main",
+         "graph": {
+            "connections": [
+               {
+                  "fromId": "4c438027-7961-a6c6-dc1b-e4a633a2f71b",
+                  "fromProperty": "id",
+                  "toId": "189062e3-73dc-05ee-617c-55a3c2f1cc31",
+                  "toProperty": "text"
+               },
+               {
+                  "fromId": "4c438027-7961-a6c6-dc1b-e4a633a2f71b",
+                  "fromProperty": "isConnected",
+                  "toId": "09ad98c6-f078-526d-c6b9-512af022708f",
+                  "toProperty": "text"
+               },
+               {
+                  "fromId": "4c438027-7961-a6c6-dc1b-e4a633a2f71b",
+                  "fromProperty": "say",
+                  "toId": "c62587c3-1d9d-4eca-bb0c-2897de7cdb1f",
+                  "toProperty": "text"
+               },
+               {
+                  "fromId": "4c438027-7961-a6c6-dc1b-e4a633a2f71b",
+                  "fromProperty": "testColour",
+                  "toId": "b4d51f47-3e58-4a69-622e-4ded6cf6e32f",
+                  "toProperty": "color"
+               },
+               {
+                  "fromId": "4c438027-7961-a6c6-dc1b-e4a633a2f71b",
+                  "fromProperty": "testNumber",
+                  "toId": "b4d51f47-3e58-4a69-622e-4ded6cf6e32f",
+                  "toProperty": "width"
+               },
+               {
+                  "fromId": "4c438027-7961-a6c6-dc1b-e4a633a2f71b",
+                  "fromProperty": "testString",
+                  "toId": "ff295689-89a2-e4fa-2f7e-e933f2630195",
+                  "toProperty": "text"
+               },
+               {
+                  "fromId": "6e0203d4-d621-03e0-800a-78986281f132",
+                  "fromProperty": "x",
+                  "toId": "4c438027-7961-a6c6-dc1b-e4a633a2f71b",
+                  "toProperty": "testTouchX"
+               },
+               {
+                  "fromId": "6e0203d4-d621-03e0-800a-78986281f132",
+                  "fromProperty": "y",
+                  "toId": "4c438027-7961-a6c6-dc1b-e4a633a2f71b",
+                  "toProperty": "testTouchY"
+               }
+            ],
+            "roots": [
+               {
+                  "id": "2d3ccd33-f1ef-2dc5-3e1a-ca9d61cd222b",
+                  "type": "Group",
+                  "label": "Root",
+                  "x": 131.44803681920905,
+                  "y": -808.045681968795,
+                  "parameters": {
+                     "fill": "parent"
+                  },
+                  "ports": [],
+                  "dynamicports": [],
+                  "children": [
+                     {
+                        "id": "fa90ea16-1232-0437-deea-5dd6263d8247",
+                        "type": "Rectangle",
+                        "label": "Background",
+                        "x": 284,
+                        "y": 332,
+                        "parameters": {},
+                        "ports": [],
+                        "dynamicports": [],
+                        "children": []
+                     },
+                     {
+                        "id": "3bf52ad9-9d82-8062-5d65-f62bbc5adb27",
+                        "type": "Rectangle",
+                        "label": "KattegatBg",
+                        "x": 20,
+                        "y": 122,
+                        "parameters": {
+                           "width": {
+                              "value": 100,
+                              "unit": "%"
+                           },
+                           "height": {
+                              "value": 400,
+                              "unit": "px"
+                           },
+                           "color": "#c0c0c0"
+                        },
+                        "ports": [],
+                        "dynamicports": [],
+                        "children": []
+                     },
+                     {
+                        "id": "db99859f-b087-6ec1-9ff0-ddfc26c4f0d4",
+                        "type": "Stack Layout",
+                        "x": 20,
+                        "y": 168,
+                        "parameters": {},
+                        "ports": [],
+                        "dynamicports": [],
+                        "children": [
+                           {
+                              "id": "2d97e6a0-0768-1d1b-f43f-b2aa99240830",
+                              "type": "Flow Layout",
+                              "label": "Kattegat",
+                              "x": 20,
+                              "y": 46,
+                              "parameters": {
+                                 "orientation": "horizontal",
+                                 "sizeMode": "explicit",
+                                 "padding": 15,
+                                 "clip": false,
+                                 "height": {
+                                    "value": 400,
+                                    "unit": "px"
+                                 },
+                                 "width": {
+                                    "value": 100,
+                                    "unit": "%"
+                                 }
+                              },
+                              "ports": [],
+                              "dynamicports": [],
+                              "children": [
+                                 {
+                                    "id": "1060474d-93ac-cc1c-14f3-54c753f526a0",
+                                    "type": "Rectangle",
+                                    "x": 20,
+                                    "y": 61,
+                                    "parameters": {
+                                       "width": {
+                                          "value": 100,
+                                          "unit": "%"
+                                       },
+                                       "height": {
+                                          "value": 300,
+                                          "unit": "%"
+                                       },
+                                       "color": "#ff2600",
+                                       "alignX": "left",
+                                       "alignY": "top",
+                                       "z": 1,
+                                       "x": 1,
+                                       "y": 1
+                                    },
+                                    "ports": [],
+                                    "dynamicports": [],
+                                    "children": []
+                                 },
+                                 {
+                                    "id": "dec78eee-1521-236b-c620-6727031a1783",
+                                    "type": "Text",
+                                    "version": 2,
+                                    "x": 20,
+                                    "y": 61,
+                                    "parameters": {
+                                       "text": "Id",
+                                       "color": "#ff2f92",
+                                       "sizeMode": "childHeight",
+                                       "width": {
+                                          "value": 200,
+                                          "unit": "px"
+                                       }
+                                    },
+                                    "ports": [],
+                                    "dynamicports": [],
+                                    "children": []
+                                 },
+                                 {
+                                    "id": "189062e3-73dc-05ee-617c-55a3c2f1cc31",
+                                    "type": "Text",
+                                    "x": 20,
+                                    "y": 122,
+                                    "parameters": {
+                                       "alignX": "center",
+                                       "alignY": "center",
+                                       "text": "Hello World",
+                                       "color": "#000000",
+                                       "sizeMode": "childWidth"
+                                    },
+                                    "ports": [],
+                                    "dynamicports": [],
+                                    "children": []
+                                 },
+                                 {
+                                    "id": "dbfd1a8b-9b32-4fa5-403f-6959bb702375",
+                                    "type": "Rectangle",
+                                    "x": 20,
+                                    "y": 265,
+                                    "parameters": {},
+                                    "ports": [],
+                                    "dynamicports": [],
+                                    "children": []
+                                 },
+                                 {
+                                    "id": "f8e59dcd-eee9-fb44-7514-2dddb487e619",
+                                    "type": "Text",
+                                    "version": 2,
+                                    "x": 20,
+                                    "y": 265,
+                                    "parameters": {
+                                       "text": "Connected",
+                                       "color": "#ff2f92",
+                                       "sizeMode": "childHeight",
+                                       "width": {
+                                          "value": 200,
+                                          "unit": "px"
+                                       }
+                                    },
+                                    "ports": [],
+                                    "dynamicports": [],
+                                    "children": []
+                                 },
+                                 {
+                                    "id": "09ad98c6-f078-526d-c6b9-512af022708f",
+                                    "type": "Text",
+                                    "version": 2,
+                                    "label": "isConnected",
+                                    "x": 20,
+                                    "y": 372,
+                                    "parameters": {
+                                       "color": "#000000"
+                                    },
+                                    "ports": [],
+                                    "dynamicports": [],
+                                    "children": []
+                                 },
+                                 {
+                                    "id": "97270a34-a69c-527f-3b42-128e24d87e57",
+                                    "type": "Rectangle",
+                                    "x": 377.8462938698861,
+                                    "y": 839.399264866336,
+                                    "parameters": {},
+                                    "ports": [],
+                                    "dynamicports": [],
+                                    "children": []
+                                 },
+                                 {
+                                    "id": "a3d5bba6-af25-63db-4899-9ce09aa7c199",
+                                    "type": "Text",
+                                    "version": 2,
+                                    "x": 20,
+                                    "y": 515,
+                                    "parameters": {
+                                       "color": "#ff2f92",
+                                       "text": "Raw",
+                                       "sizeMode": "childHeight",
+                                       "width": {
+                                          "value": 200,
+                                          "unit": "px"
+                                       }
+                                    },
+                                    "ports": [],
+                                    "dynamicports": [],
+                                    "children": []
+                                 },
+                                 {
+                                    "id": "c62587c3-1d9d-4eca-bb0c-2897de7cdb1f",
+                                    "type": "Text",
+                                    "version": 2,
+                                    "label": "msg",
+                                    "x": 20,
+                                    "y": 576,
+                                    "parameters": {
+                                       "color": "#000000",
+                                       "sizeMode": "childHeight",
+                                       "text": "Send data via Kattegat for it to show up here"
+                                    },
+                                    "ports": [],
+                                    "dynamicports": [],
+                                    "children": []
+                                 }
+                              ]
+                           },
+                           {
+                              "id": "8567d6f9-83c7-1002-b66a-682bc403c6b9",
+                              "type": "Rectangle",
+                              "x": 20,
+                              "y": 689,
+                              "parameters": {
+                                 "height": {
+                                    "value": 4,
+                                    "unit": "px"
+                                 },
+                                 "color": "#919191"
+                              },
+                              "ports": [],
+                              "dynamicports": [],
+                              "children": []
+                           },
+                           {
+                              "id": "2370bdb2-9427-5940-6fa9-b672cc3d9c02",
+                              "type": "Flow Layout",
+                              "x": 20,
+                              "y": 765,
+                              "parameters": {
+                                 "orientation": "horizontal",
+                                 "padding": 15,
+                                 "sizeMode": "childHeight"
+                              },
+                              "ports": [],
+                              "dynamicports": [],
+                              "children": [
+                                 {
+                                    "id": "ff295689-89a2-e4fa-2f7e-e933f2630195",
+                                    "type": "Text",
+                                    "version": 2,
+                                    "label": "value",
+                                    "x": 20,
+                                    "y": 46,
+                                    "parameters": {
+                                       "color": "#000000"
+                                    },
+                                    "ports": [],
+                                    "dynamicports": [],
+                                    "children": []
+                                 }
+                              ]
+                           },
+                           {
+                              "id": "b4d51f47-3e58-4a69-622e-4ded6cf6e32f",
+                              "type": "Circle",
+                              "label": "HappyFun",
+                              "x": 20,
+                              "y": 908,
+                              "parameters": {
+                                 "color": "#ff2f92",
+                                 "alignX": "center",
+                                 "alignY": "center"
+                              },
+                              "ports": [],
+                              "dynamicports": [],
+                              "children": []
+                           }
+                        ]
+                     }
+                  ]
+               },
+               {
+                  "id": "4c438027-7961-a6c6-dc1b-e4a633a2f71b",
+                  "type": "Javascript2",
+                  "label": "Javascript",
+                  "x": -118.99725199366594,
+                  "y": 12.516022339671224,
+                  "parameters": {
+                     "useExternalFile": "yes",
+                     "externalFile": "kattegat.js"
+                  },
+                  "ports": [],
+                  "dynamicports": [
+                     {
+                        "name": "testTouchX",
+                        "type": {
+                           "name": "number"
+                        },
+                        "plug": "input",
+                        "group": "Inputs",
+                        "index": 2
+                     },
+                     {
+                        "name": "testTouchY",
+                        "type": {
+                           "name": "number"
+                        },
+                        "plug": "input",
+                        "group": "Inputs",
+                        "index": 3
+                     },
+                     {
+                        "name": "id",
+                        "type": {
+                           "name": "string"
+                        },
+                        "plug": "output",
+                        "group": "Outputs",
+                        "index": 4
+                     },
+                     {
+                        "name": "isConnected",
+                        "type": {
+                           "name": "boolean"
+                        },
+                        "plug": "output",
+                        "group": "Outputs",
+                        "index": 5
+                     },
+                     {
+                        "name": "say",
+                        "type": {
+                           "name": "string"
+                        },
+                        "plug": "output",
+                        "group": "Outputs",
+                        "index": 6
+                     },
+                     {
+                        "name": "testNumber",
+                        "type": {
+                           "name": "number"
+                        },
+                        "plug": "output",
+                        "group": "Outputs",
+                        "index": 7
+                     },
+                     {
+                        "name": "testString",
+                        "type": {
+                           "name": "string"
+                        },
+                        "plug": "output",
+                        "group": "Outputs",
+                        "index": 8
+                     },
+                     {
+                        "name": "testColour",
+                        "type": {
+                           "name": "color"
+                        },
+                        "plug": "output",
+                        "group": "Outputs",
+                        "index": 9
+                     }
+                  ],
+                  "children": []
+               },
+               {
+                  "id": "6e0203d4-d621-03e0-800a-78986281f132",
+                  "type": "Touch Position",
+                  "x": -106.94733803132414,
+                  "y": 293.8946403455313,
+                  "parameters": {},
+                  "ports": [],
+                  "dynamicports": [],
+                  "children": []
+               }
+            ]
+         }
+      }
+   ],
+   "settings": {
+      "canvasWidth": 1080,
+      "canvasHeight": 1920,
+      "fillMode": "aspectFit"
+   },
+   "rootNodeId": "2d3ccd33-f1ef-2dc5-3e1a-ca9d61cd222b",
+   "thumbnailURI": "data:image/png;base64,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",
+   "version": "1"
+}
