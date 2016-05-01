@@ -17,7 +17,7 @@ me.handleMessage = function(evt, data) {
       me.outputs.say = JSON.stringify(data);
       me.node.flagOutputDirty("say");
       if (typeof data.testNumber !== undefined) {
-        me.outputs.testNumber = data.testNumber;
+        me.outputs.testNumber = parseInt(data.testNumber);
         me.node.flagOutputDirty("testNumber");
       }
       if (typeof data.testColour !== undefined) {
