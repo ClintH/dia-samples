@@ -10,6 +10,10 @@ $(document).ready(function() {
   // Listen for 'swipe' events
   hammertime.on('swipe', onSwipe);
 
+  // By default, Hammer only recognises horizonal swipes. If you want to
+  // also recognise vertical swipes, be sure to use this:
+  //  hammertime.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
+  // Read more: https://hammerjs.github.io/getting-started/
 });
 
 
