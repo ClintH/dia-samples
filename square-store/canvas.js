@@ -12,7 +12,7 @@ var objectId = {"square-store-canvas": true};
 var shouldSave = true;
 
 $(document).ready(function() {
-	socket = io.connect("http://" + window.location.host);
+	sosocket = io.connect('/');
 	socket.on("say", onSay);
 	
 	$("#clearCanvas").on("click", onClearClick);

@@ -18,7 +18,7 @@ $(document).ready(function() {
 	});
 	
 	// Connect realtime stuff up
-	socket = io.connect("http://" + window.location.host);
+	socket = io.connect('/');
 	socket.on("hello", onHello);
 	socket.on("say", onSay);
 	socket.on("leave", onLeave);

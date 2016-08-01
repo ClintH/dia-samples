@@ -45,8 +45,10 @@ function requestLocation() {
 
 // Callback when an error occurs
 function onPositionError(error) {
-		kattegat.notifyError(error);
-		$("#locationData").text(error);
+	console.log(error);
+	var errString = error.message;
+	kattegat.notifyError(errString);
+	$("#locationData").text('Error: ' + errString);
 }
 
 // Called when our 'getCurrentPosition' request finishes and there is a position

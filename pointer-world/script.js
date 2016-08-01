@@ -19,7 +19,7 @@ $(document).ready(function() {
 	})
 
 	// Connect realtime stuff up
-	socket = io.connect("http://" + window.location.host);
+	socket = io.connect('/');
 	socket.on("say", onSay);
 
 	// Every two seconds, "age" the cursors so they get removed

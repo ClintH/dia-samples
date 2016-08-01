@@ -22,7 +22,7 @@ $(document).ready(function() {
 	$('body').on('dlbclick', reset);
 
 	// Connect realtime stuff up
-	socket = io.connect("http://" + window.location.host);
+	socket = io.connect('/');
 	socket.on("say", onSay);
 
 	reset();

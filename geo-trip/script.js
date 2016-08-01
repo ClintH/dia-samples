@@ -1,4 +1,5 @@
 var startPos = null;
+var lastPos = null;
 var timerId = null;
 
 $(document).ready(function() {
@@ -20,8 +21,8 @@ function requestLocationLoop() {
 
 // Callback when an error occurs
 function onPositionError(error) {
-		kattegat.notifyError(error);
-		$("#locationData").text(error);
+	kattegat.notifyError(error.message);
+	$("#locationData").text(error.message);
 }
 
 // Called when our 'getCurrentPosition' request finishes and there is a position
@@ -31,7 +32,7 @@ function onPositionReceived(e) {
 	
 	if (startPos == null) {
 		// Haven't got a position yet, so use this one as the start
-		startPos = coords;
+		lastPos = startPos = coords;
 		$("#startDetails").text(JSON.stringify(coords));
 	}
 
@@ -39,10 +40,12 @@ function onPositionReceived(e) {
 	var distanceMeters = geolib.getDistance(startPos, coords);
 	$("#distance").text(distanceMeters);
 
-	// getSpeed works because both startPos and coords have latitude, longitude and time fields
-	var speedKmh = geolib.getSpeed(startPos, coords);
-	var speedMetersPerSec = speedKmh * 60 * 60 * 1000
-	$("#speed").text(speedMetersPerSec);
+	// getSpeed works because both lastPos and coords have latitude, longitude and time fields
+	//	var speedKmh = geolib.getSpeed(lastPos, coords);
+
+    var metersPerSec = geolib.getDistance(lastPos,coords) / ( (coords.time-lastPos.time)/1000);
+    lastPos = coords;
+	$("#speed").text(metersPerSec);
 }
 
 function startTrip() {
@@ -65,4 +68,9 @@ function stopTrip() {
 
 	startPos = null;
 	kattegat.notify("Trip stopped");
+
+	// Make final calculation based on startPos and last location
+	var speedKmh = geolib.getSpeed(startPos, lastPos);
+	var speedMetersPerSec = speedKmh * 60 * 60 * 1000
+	$("#speed").text(speedMetersPerSec);
 }

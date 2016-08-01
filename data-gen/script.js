@@ -39,7 +39,7 @@ $(document).ready(function() {
 	$("#configRandomness").val(computeRandomness);
 
 	// Connect realtime stuff up
-	socket = io.connect("http://" + window.location.host);
+	socket = io.connect('/');
 
 	// Start!
 	trendShort = new Smoother(10);

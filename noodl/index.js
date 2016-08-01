@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	socket = io.connect("http://" + window.location.host);
+	socket = io.connect('/');
 	socket.on("say", onSay);
 	
 	$("#sendButton").on("click", onSendClick);

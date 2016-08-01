@@ -3,7 +3,7 @@ var ourId = null;
 var teamSize = 0;
 
 $(document).ready(function() {
-	socket = io.connect("http://" + window.location.host);
+	socket = io.connect('/');
 	socket.on("say", onSay);
 	socket.on("join", onJoin);
 	socket.on("list", onList);

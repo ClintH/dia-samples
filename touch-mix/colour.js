@@ -24,7 +24,7 @@ $(document).ready(function() {
 	$('#swatches').on('click', 'div', onSwatchClick);
 
 	// Connect realtime stuff up
-	socket = io.connect("http://" + window.location.host);
+	socket = io.connect('/');
 	socket.on("say", onSay);
 
 	// Set ourselves to a default value

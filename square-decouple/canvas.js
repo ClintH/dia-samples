@@ -6,7 +6,7 @@ var squareCount = 0; // Keep track of how many squares we've made
 var socket = null;
 
 $(document).ready(function() {
-	socket = io.connect("http://" + window.location.host);
+	socket = io.connect('/');
 	socket.on("say", onSay);
 	
 	// Listen to click events on any squares

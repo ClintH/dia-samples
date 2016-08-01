@@ -7,7 +7,7 @@ var socket = null;
 
 $(document).ready(function() {
 	// Connect realtime stuff up
-	socket = io.connect("http://" + window.location.host);
+	socket = io.connect('/');
 
 	// Listen for keypress events in the text entry box
 	$("#console input").on("keypress", onKeypress);
