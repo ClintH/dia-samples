@@ -19,7 +19,7 @@ $(document).ready(function() {
 	$('body').on('touchmove', function(e) { e.preventDefault() });
 
 	// Connect realtime stuff up
-	ssocket = io.connect('/');
+	socket = io.connect('/');
 	socket.on("say", onSay);
 
 	// Load the last saved value using Kattegat
